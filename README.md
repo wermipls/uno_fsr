@@ -9,4 +9,3 @@ You will need to set up HoodLoader2 (https://github.com/NicoHood/HoodLoader2) on
 
 ## Known issues
 * Usage of hardware serial results in approx. 50ms delay, which is very much undesirable for rhythm games.
-* There is currently no way to preview current sensor values for calibration purposes. A simple way to do it would be to print the values over serial in the I/O sketch (immediately after uploading the 328p sketch, HoodLoader2 will enter the bootloader and conveniently function like a standard Arduino with the 16u2 acting as a serial device).

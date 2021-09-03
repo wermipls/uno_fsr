@@ -3,6 +3,8 @@
 
 // uncomment line below to communicate over hardware serial (NOT recommended, due to unresolved issue with massive ~50ms latency)
 //#define SERIAL_COMM
+// uncomment line below to enable reporting sensor values over serial, for e.g. calibration purposes
+//#define PRINT_VALS
 
 // default inputs: A0-A3 (left down up right)
 const int pins[] = {A0, A1, A2, A3};
@@ -30,6 +32,10 @@ void loop() {
 	Serial.write(pressed_packed);
 	#else
 	write_output();
+	#endif
+
+	#ifdef PRINT_VALS
+	print_vals();
 	#endif
 }
 
@@ -78,4 +84,11 @@ inline char pack_bits()
 	}
 
 	return packed;
+}
+
+inline void print_vals()
+{
+	char buffer[128];
+	snprintf(buffer, 128, "vals: %d, %d, %d, %d\n", vals[0], vals[1], vals[2], vals[3]);
+	Serial.print(buffer);
 }
